@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.github.olegzuev.yukarinotes.ui.charalist.CharaListViewModel" />
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/chara_coordinator">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_scrollFlags="scroll|enterAlways"
+                app:title="@string/title_chara_list">
+
+                <com.mancj.materialsearchbar.MaterialSearchBar
+                    android:id="@+id/chara_search_bar"
+                    style="@style/mSearchBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:mt_hint="@string/hint_text_search"
+                    app:mt_maxSuggestionsCount="0"
+                    app:mt_placeholder="@string/title_chara_list" />
+
+            </com.google.android.material.appbar.MaterialToolbar>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                tools:ignore="LabelFor"
+                android:background="?attr/colorSurface">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/myDropdown"
+                    android:id="@+id/dropdown_type"
+                    android:layout_width="match_parent"
+                    android:layout_weight="5.8"
+                    android:hint="@string/ui_text_atk_type">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/dropdown_text1"
+                        style="@style/myDropdownAutoText"
+                        android:layout_width="match_parent" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/myDropdown"
+                    android:id="@+id/dropdown_position"
+                    android:layout_width="match_parent"
+                    android:layout_weight="6"
+                    android:hint="@string/ui_text_position">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/dropdown_text2"
+                        style="@style/myDropdownAutoText"
+                        android:layout_width="match_parent" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/myDropdown"
+                    android:id="@+id/dropdown_sort"
+                    android:layout_width="match_parent"
+                    android:layout_weight="5.2"
+                    android:hint="@string/ui_text_sort">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/dropdown_text3"
+                        style="@style/myDropdownAutoText"
+                        android:layout_width="match_parent" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/chara_list_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:listitem="@layout/item_chara" />
+
+        <ProgressBar
+            android:id="@+id/chara_list_progress_bar"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+
+        <TextView
+            android:id="@+id/download_db_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:text="@string/text_please_download_db" />
+
+        <TextView
+            android:id="@+id/text_search_no_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:text="@string/hint_text_search_no_result" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

@@ -1,0 +1,164 @@
+package com.github.olegzuev.yukarinotes.data.action;
+
+import com.github.olegzuev.yukarinotes.R;
+import com.github.olegzuev.yukarinotes.common.I18N;
+import com.github.olegzuev.yukarinotes.data.Property;
+
+public class IfForChildrenAction extends ActionParameter {
+
+    private String trueClause;
+    private String falseClause;
+    private IfType ifType;
+
+    @Override
+    protected void childInit() {
+
+        if(actionDetail2 != 0){
+            ifType = IfType.parse(actionDetail1);
+            if(ifType != IfType.unknown) {
+                trueClause = I18N.getString(R.string.use_d1_to_s2_if_s3,
+                        getActionNum(actionDetail2), targetParameter.buildTargetClause(true), ifType.description());
+            } else {
+                if((actionDetail1 >= 600 && actionDetail1 < 700) || actionDetail1 == 710){
+                    trueClause = I18N.getString(R.string.use_d1_to_s2_in_state_of_ID_d3,
+                            getActionNum(actionDetail2), targetParameter.buildTargetClause(true), actionDetail1 - 600);
+                } else if(actionDetail1 == 700){
+                    trueClause = I18N.getString(R.string.use_d1_to_s2_if_it_is_alone,
+                            getActionNum(actionDetail2), targetParameter.buildTargetClause(true));
+                } else if(actionDetail1 >= 901 && actionDetail1 < 1000){
+                    trueClause = I18N.getString(R.string.use_d1_if_s2_HP_is_below_d3,
+                            getActionNum(actionDetail2), targetParameter.buildTargetClause(true), actionDetail1 - 900);
+                } else if (actionDetail1 == 1300) {
+                    trueClause = I18N.getString(R.string.use_d1_to_s2_if_target_is_magical_type,
+                            getActionNum(actionDetail2), targetParameter.buildTargetClause(true));
+                } else if (actionDetail1 == 1800) {
+                    trueClause = I18N.getString(R.string.Performs_d1_to_s2_if_it_is_a_multi_target_unit,
+                            getActionNum(actionDetail2), targetParameter.buildTargetClause());
+                } else if (actionDetail1 == 1900) {
+                    trueClause = I18N.getString(R.string.Performs_d1_on_s2_if_the_target_possesses_a_barrier,
+                            getActionNum(actionDetail2), targetParameter.buildTargetClause(true));
+                }else if (actionDetail1 >= 6000 && actionDetail1 < 7000) {
+                    trueClause = I18N.getString(R.string.use_d1_to_s2_in_state_of_ID_d3,
+                            getActionNum(actionDetail2), targetParameter.buildTargetClause(true), actionDetail1 - 6000);
+                }
+            }
+        }
+
+        if(actionDetail3 != 0){
+            ifType = IfType.parse(actionDetail1);
+            if(ifType != IfType.unknown) {
+                falseClause = I18N.getString(R.string.use_d1_to_s2_if_not_s3,
+                        getActionNum(actionDetail3), targetParameter.buildTargetClause(true), ifType.description());
+            } else {
+                if((actionDetail1 >= 600 && actionDetail1 < 700) || actionDetail1 == 710){
+                    falseClause = I18N.getString(R.string.use_d1_to_s2_if_not_in_state_of_ID_d3,
+                            getActionNum(actionDetail3), targetParameter.buildTargetClause(true), actionDetail1 - 600);
+                } else if(actionDetail1 == 700){
+                    falseClause = I18N.getString(R.string.use_d1_to_s2_if_it_is_not_alone,
+                            getActionNum(actionDetail3), targetParameter.buildTargetClause(true));
+                } else if(actionDetail1 >= 901 && actionDetail1 < 1000){
+                    falseClause = I18N.getString(R.string.use_d1_if_s2_HP_is_not_below_d3,
+                            getActionNum(actionDetail3), targetParameter.buildTargetClause(true), actionDetail1 - 900);
+                } else if (actionDetail1 == 1300) {
+                    falseClause = I18N.getString(R.string.use_d1_to_s2_if_target_is_not_magical_type,
+                            getActionNum(actionDetail3), targetParameter.buildTargetClause(true));
+                } else if (actionDetail1 == 1800) {
+                    trueClause = I18N.getString(R.string.Performs_d1_to_s2_if_it_is_not_a_multi_target_unit,
+                            getActionNum(actionDetail3), targetParameter.buildTargetClause());
+                } else if (actionDetail1 == 1900) {
+                    trueClause = I18N.getString(R.string.Performs_d1_on_s2_if_the_target_does_not_possess_a_barrier,
+                            getActionNum(actionDetail3), targetParameter.buildTargetClause(true));
+                }else if (actionDetail1 >= 6000 && actionDetail1 < 7000) {
+                    falseClause = I18N.getString(R.string.use_d1_to_s2_if_not_in_state_of_ID_d3,
+                            getActionNum(actionDetail3), targetParameter.buildTargetClause(true), actionDetail1 - 6000);
+                }
+            }
+        }
+
+    }
+
+    @Override
+    public String localizedDetail(int level, Property property) {
+        if(actionDetail1 == 100 || actionDetail1 == 101 || actionDetail1 == 200 || actionDetail1 == 300 || actionDetail1 == 500 || actionDetail1 == 501
+                || actionDetail1 == 502 || actionDetail1 == 503 || actionDetail1 == 504 || actionDetail1 == 511 || actionDetail1 == 512
+                || (actionDetail1 >=600 && actionDetail1 < 900) || (actionDetail1 >= 901 && actionDetail1 < 1000)
+                || actionDetail1 == 1300 || actionDetail1 == 1400 || actionDetail1 == 1600 || actionDetail1 == 1800
+                || actionDetail1 == 1900 || (actionDetail1 >= 6000 && actionDetail1 < 7000)) {
+            if(trueClause != null && falseClause != null)
+                return I18N.getString(R.string.Condition_s, trueClause + falseClause);
+            else if(trueClause != null)
+                return I18N.getString(R.string.Condition_s, trueClause);
+            else if(falseClause != null)
+                return I18N.getString(R.string.Condition_s, falseClause);
+        } else if(actionDetail1 >= 0 && actionDetail1 < 100){
+            if(actionDetail2 != 0 && actionDetail3 != 0){
+                return I18N.getString(R.string.Random_event_d1_chance_use_d2_otherwise_d3, actionDetail1, getActionNum(actionDetail2), getActionNum(actionDetail3));
+            } else if(actionDetail2 != 0){
+                return I18N.getString(R.string.Random_event_d1_chance_use_d2, actionDetail1, getActionNum(actionDetail2));
+            } else if(actionDetail3 != 0){
+                return I18N.getString(R.string.Random_event_d1_chance_use_d2, 100 - actionDetail1, getActionNum(actionDetail3));
+            }
+        }
+        return super.localizedDetail(level, property);
+    }
+}
+
+enum IfType{
+    unknown(-1),
+    controllered(100),
+    hastened(101),
+    blind(200),
+    convert(300),
+    decoy(400),
+    burn(500),
+    curse(501),
+    poison(502),
+    venom(503),
+    hex(504),
+    curseOrHex(511),
+    poisonOrVenom(512),
+    Break(710),
+    polymorph(1400),
+    fear(1600),
+    spy(1601),
+    magicDefDecreased(1700);
+
+    private int value;
+    IfType(int value){
+        this.value = value;
+    }
+    public int getValue(){
+        return value;
+    }
+
+    public static IfType parse(int value){
+        for(IfType item : IfType.values()){
+            if(item.getValue() == value)
+                return item;
+        }
+        return IfType.unknown;
+    }
+
+    public String description(){
+        switch (this){
+            case controllered: return I18N.getString(R.string.controlled);
+            case hastened: return I18N.getString(R.string.hastened);
+            case blind: return I18N.getString(R.string.blinded);
+            case convert: return I18N.getString(R.string.charmed_or_confused);
+            case decoy: return I18N.getString(R.string.decoying);
+            case burn: return I18N.getString(R.string.burned);
+            case curse: return I18N.getString(R.string.cursed);
+            case poison: return I18N.getString(R.string.poisoned);
+            case venom: return I18N.getString(R.string.venomed);
+            case poisonOrVenom: return I18N.getString(R.string.poisoned_or_venomed);
+            case Break: return I18N.getString(R.string.breaking);
+            case polymorph: return I18N.getString(R.string.polymorphed);
+            case hex: return I18N.getString(R.string.hexed);
+            case curseOrHex: return I18N.getString(R.string.cursed_or_hexed);
+            case fear: return I18N.getString(R.string.feared);
+            case spy: return I18N.getString(R.string.is_invisible);
+            case magicDefDecreased: return I18N.getString(R.string.magic_defence_decreased);
+            default: return I18N.getString(R.string.unknown);
+        }
+    }
+}

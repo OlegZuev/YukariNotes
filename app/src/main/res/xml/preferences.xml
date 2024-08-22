@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        android:theme="@style/AppTheme"
+        app:key="appearance_category"
+        app:title="@string/setting_appearance">
+
+        <ListPreference
+            app:key="language"
+            app:title="@string/setting_language"
+            app:useSimpleSummaryProvider="true"
+            app:icon="@drawable/mic_language"
+            app:entries="@array/setting_language_options"
+            app:entryValues="@array/setting_language_values"
+            app:dialogTitle="@string/setting_language_dialog_title" />
+
+        <ListPreference
+            app:key="expressionStyle2"
+            app:title="@string/setting_kill_expression_title"
+            app:defaultValue="0"
+            app:useSimpleSummaryProvider="true"
+            app:icon="@drawable/mic_symbols"
+            app:entries="@array/setting_kill_expression_options"
+            app:entryValues="@array/setting_kill_expression_values"
+            app:dialogTitle="@string/setting_kill_expression_title" />
+
+        <SwitchPreferenceCompat
+            app:key="limitClanBattleNum"
+            app:defaultValue="true"
+            app:icon="@drawable/mic_limit"
+            app:summary="@string/setting_limit_clan_battle_num_description"
+            app:title="@string/setting_limit_clan_battle_num" />
+
+        <!--
+        <SwitchPreferenceCompat
+            app:key="expressionStyle"
+            app:defaultValue="false"
+            app:icon="@drawable/mic_symbols"
+            app:summary="@string/setting_kill_expression_summary"
+            app:title="@string/setting_kill_expression_title" />
+        -->
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:key="system_category"
+        app:title="@string/setting_system">
+
+        <ListPreference
+            app:key="server"
+            app:title="@string/setting_server"
+            app:useSimpleSummaryProvider="true"
+            app:icon="@drawable/mic_cloud"
+            app:entries="@array/setting_server_options"
+            app:entryValues="@array/setting_server_values"
+            app:dialogTitle="@string/setting_server_dialog_title"
+            app:defaultValue="jp_ninon"/>
+
+        <Preference
+            app:key="log"
+            app:icon="@drawable/mic_file"
+            app:title="@string/title_log" >
+        </Preference>
+
+        <!--
+        <Preference
+            app:key="reDownloadDb"
+            app:icon="@drawable/mic_restore"
+            app:title="@string/setting_re_download_db"
+            app:summary="@string/setting_re_download_db_summary"/>
+        -->
+
+        <Preference
+            app:key="dbVersion_new"
+            app:icon="@drawable/mic_chart"
+            app:title="@string/setting_db_version"
+            app:summary="0"/>
+
+        <Preference
+            app:key="appVersion"
+            app:icon="@drawable/mic_appversion"
+            app:title="@string/setting_app_version"
+            app:summary="0"/>
+
+        <Preference
+            app:key="about"
+            app:title="@string/setting_about" >
+        </Preference>
+
+        <SwitchPreference
+            app:isPreferenceVisible="false"
+            app:key="isBadgeVisible"
+            app:defaultValue="true" />
+
+        <SwitchPreference
+            app:isPreferenceVisible="false"
+            app:key="hideServerSwitchHint"
+            app:defaultValue="false" />
+
+    </PreferenceCategory>
+
+
+
+</PreferenceScreen>
