@@ -10,8 +10,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 public class BrotliUtils {
     /**缓冲字节*/
@@ -22,7 +20,6 @@ public class BrotliUtils {
     /**
      * 数据解压缩
      * @param data 压缩的数据
-     * @return
      * @throws IOException
      */
     public static byte[] deCompress(byte[] data) throws IOException{
@@ -90,17 +87,5 @@ public class BrotliUtils {
     public static void deCompress(String path, boolean delete) throws IOException{
         File file = new File(path);
         deCompress(file, delete);
-    }
-
-    /**
-     * 文件解压缩
-     * @param srcPath Source file path
-     * @param destPath Destination file path
-     * @throws IOException
-     */
-    public static void moveTo(String srcPath, String destPath) throws IOException {
-        var src = Paths.get(srcPath);
-        var dest = Paths.get(destPath);
-        Files.move(src, dest);
     }
 }

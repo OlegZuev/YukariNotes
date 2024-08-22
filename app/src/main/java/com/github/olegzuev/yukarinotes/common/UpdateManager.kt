@@ -376,7 +376,7 @@ class UpdateManager private constructor(
                     FileUtils.deleteDirectory(File(FileUtils.getDbDirectoryPath()))
                 }
                 val conn = if (UserSettings.get().preference.getString(UserSettings.SERVER_KEY, "jp_ninon") == "jp_ninon") {
-                    URL(Statics.DB_FILE_URL + "?version=" + serverVersion).openConnection() as HttpURLConnection
+                    URL("${Statics.DB_FILE_URL}?version=${serverVersion}&compressed=true").openConnection() as HttpURLConnection
                 } else {
                     URL(Statics.DB_FILE_URL).openConnection() as HttpURLConnection
                 }
@@ -417,17 +417,7 @@ class UpdateManager private constructor(
     fun doDecompress(){
         FileUtils.deleteFile(FileUtils.getDbFilePath())
         LogUtils.file(LogUtils.I, "Start decompress DB.")
-        when (UserSettings.get().preference.getString(UserSettings.SERVER_KEY, "jp_ninon")) {
-            "jp_ninon" -> {
-                BrotliUtils.moveTo(FileUtils.getCompressedDbFilePath(), FileUtils.getDbFilePath())
-            }
-            "jp" -> {
-                BrotliUtils.deCompress(FileUtils.getCompressedDbFilePath(), true)
-            }
-            "cn" -> {
-                BrotliUtils.deCompress(FileUtils.getCompressedDbFilePath(), true)
-            }
-        }
+        BrotliUtils.deCompress(FileUtils.getCompressedDbFilePath(), true)
         updateHandler.sendEmptyMessage(UPDATE_COMPLETED)
     }
 

@@ -1,6 +1,7 @@
 # YukariNotes
 
 An **unofficial** Android information application for "Princess Connect Re:Dive".
+
 This is a modified version of [ShizuruNotes](https://github.com/MalitsPlus/ShizuruNotes).
 
 ## Requirement
