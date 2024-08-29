@@ -112,116 +112,109 @@ class CharaListViewModel(
             }
         }
 
-        // Sort by Name
-        if (selectedSort == "13") {
-            charaToShow.sortWith { a: Chara, b: Chara ->
-                val valueA: String = a.unitName
-                val valueB: String = b.unitName
-                (if (isAsc) 1 else -1) * valueB.compareTo(valueA)
-            }
-        } else {
-            charaToShow.sortWith(kotlin.Comparator { a: Chara, b: Chara ->
-                val valueA: Int
-                val valueB: Int
-                when (selectedSort) {
-                    "0" -> {
-                        return@Comparator if (b.startTime.isEqual(a.startTime)) 0 else if (b.startTime.isAfter(
-                                a.startTime
-                            ) == isAsc
-                        ) -1 else 1
+        charaToShow.sortWith(kotlin.Comparator { a: Chara, b: Chara ->
+            val valueA : Int
+            val valueB : Int
+            when (selectedSort) {
+                "0" -> {
+                    return@Comparator if (b.startTime.isEqual(a.startTime)) 0 else if (b.startTime.isAfter(a.startTime) == isAsc) -1 else 1
+                }
+                "1" -> {
+                    valueA = a.searchAreaWidth
+                    valueB = b.searchAreaWidth
+                }
+                "2" -> {
+                    valueA = a.charaProperty.getAtk()
+                    valueB = b.charaProperty.getAtk()
+                }
+                "3" -> {
+                    valueA = a.charaProperty.getMagicStr()
+                    valueB = b.charaProperty.getMagicStr()
+                }
+                "4" -> {
+                    valueA = a.charaProperty.getPhysicalCritical()
+                    valueB = b.charaProperty.getPhysicalCritical()
+                }
+                "5" -> {
+                    valueA = a.charaProperty.getMagicCritical()
+                    valueB = b.charaProperty.getMagicCritical()
+                }
+                "6" -> {
+                    valueA = a.charaProperty.getDef()
+                    valueB = b.charaProperty.getDef()
+                }
+                "7" -> {
+                    valueA = a.charaProperty.getMagicDef()
+                    valueB = b.charaProperty.getMagicDef()
+                }
+                "8" -> {
+                    valueA = a.charaProperty.getHp()
+                    valueB = b.charaProperty.getHp()
+                }
+                "9" -> {
+                    valueA = a.charaProperty.effectivePhysicalHP
+                    valueB = b.charaProperty.effectivePhysicalHP
+                }
+                "10" -> {
+                    valueA = a.charaProperty.effectiveMagicalHP
+                    valueB = b.charaProperty.effectiveMagicalHP
+                }
+                "11" -> {
+                    valueA = a.charaProperty.getEnergyRecoveryRate()
+                    valueB = b.charaProperty.getEnergyRecoveryRate()
+                }
+                "12" -> {
+                    valueA = a.charaProperty.getEnergyReduceRate()
+                    valueB = b.charaProperty.getEnergyReduceRate()
+                }
+                "13" -> {
+                    val strvalueA: String = a.unitName
+                    val strvalueB: String = b.unitName
+                    return@Comparator (if (isAsc) 1 else -1) * strvalueB.compareTo(strvalueA)
+                }
+                "14" -> {
+                    valueA = try {
+                        a.age.toInt()
+                    } catch (ex: Exception) {
+                        9999
                     }
-                    "1" -> {
-                        valueA = a.searchAreaWidth
-                        valueB = b.searchAreaWidth
-                    }
-                    "2" -> {
-                        valueA = a.charaProperty.getAtk()
-                        valueB = b.charaProperty.getAtk()
-                    }
-                    "3" -> {
-                        valueA = a.charaProperty.getMagicStr()
-                        valueB = b.charaProperty.getMagicStr()
-                    }
-                    "4" -> {
-                        valueA = a.charaProperty.getPhysicalCritical()
-                        valueB = b.charaProperty.getPhysicalCritical()
-                    }
-                    "5" -> {
-                        valueA = a.charaProperty.getMagicCritical()
-                        valueB = b.charaProperty.getMagicCritical()
-                    }
-                    "6" -> {
-                        valueA = a.charaProperty.getDef()
-                        valueB = b.charaProperty.getDef()
-                    }
-                    "7" -> {
-                        valueA = a.charaProperty.getMagicDef()
-                        valueB = b.charaProperty.getMagicDef()
-                    }
-                    "8" -> {
-                        valueA = a.charaProperty.getHp()
-                        valueB = b.charaProperty.getHp()
-                    }
-                    "9" -> {
-                        valueA = a.charaProperty.effectivePhysicalHP
-                        valueB = b.charaProperty.effectivePhysicalHP
-                    }
-                    "10" -> {
-                        valueA = a.charaProperty.effectiveMagicalHP
-                        valueB = b.charaProperty.effectiveMagicalHP
-                    }
-                    "11" -> {
-                        valueA = a.charaProperty.getEnergyRecoveryRate()
-                        valueB = b.charaProperty.getEnergyRecoveryRate()
-                    }
-                    "12" -> {
-                        valueA = a.charaProperty.getEnergyReduceRate()
-                        valueB = b.charaProperty.getEnergyReduceRate()
-                    }
-                    "14" -> {
-                        valueA = try {
-                            a.age.toInt()
-                        } catch (ex: Exception) {
-                            9999
-                        }
-                        valueB = try {
-                            b.age.toInt()
-                        } catch (ex: Exception) {
-                            9999
-                        }
-                    }
-                    "15" -> {
-                        valueA = try {
-                            a.height.toInt()
-                        } catch (ex: Exception) {
-                            9999
-                        }
-                        valueB = try {
-                            b.height.toInt()
-                        } catch (ex: Exception) {
-                            9999
-                        }
-                    }
-                    "16" -> {
-                        valueA = try {
-                            a.weight.toInt()
-                        } catch (ex: Exception) {
-                            9999
-                        }
-                        valueB = try {
-                            b.weight.toInt()
-                        } catch (ex: Exception) {
-                            9999
-                        }
-                    }
-                    else -> {
-                        valueA = a.unitId
-                        valueB = b.unitId
+                    valueB = try {
+                        b.age.toInt()
+                    } catch (ex: Exception) {
+                        9999
                     }
                 }
-                (if (isAsc) -1 else 1) * valueB.compareTo(valueA)
-            })
-        }
+                "15" -> {
+                    valueA = try {
+                        a.height.toInt()
+                    } catch (ex: Exception) {
+                        9999
+                    }
+                    valueB = try {
+                        b.height.toInt()
+                    } catch (ex: Exception) {
+                        9999
+                    }
+                }
+                "16" -> {
+                    valueA = try {
+                        a.weight.toInt()
+                    } catch (ex: Exception) {
+                        9999
+                    }
+                    valueB = try {
+                        b.weight.toInt()
+                    } catch (ex: Exception) {
+                        9999
+                    }
+                }
+                else -> {
+                    valueA = a.unitId
+                    valueB = b.unitId
+                }
+            }
+            (if (isAsc) -1 else 1) * valueB.compareTo(valueA)
+        })
         liveCharaList.postValue(charaToShow)
     }
 
