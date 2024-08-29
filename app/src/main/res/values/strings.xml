@@ -117,6 +117,7 @@
     <string name="ui_chip_sort_effective_magical_hp">魔法有効HP</string>
     <string name="ui_chip_sort_tp_up">TP上昇</string>
     <string name="ui_chip_sort_tp_reduce">TP減軽</string>
+    <string name="ui_chip_sort_name">姓名</string>
     <string name="ui_chip_sort_age">年齢</string>
     <string name="ui_chip_sort_height">身長</string>
     <string name="ui_chip_sort_weight">体重</string>

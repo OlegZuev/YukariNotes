@@ -72,6 +72,7 @@
     <string name="ui_chip_sort_magical_atk">魔法攻击力</string>
     <string name="ui_chip_sort_physical_def">物理防御力</string>
     <string name="ui_chip_sort_magical_def">魔法防御力</string>
+    <string name="ui_chip_sort_name">姓名</string>
     <string name="ui_chip_sort_age">年龄</string>
     <string name="ui_chip_sort_height">身高</string>
     <string name="ui_chip_sort_weight">体重</string>

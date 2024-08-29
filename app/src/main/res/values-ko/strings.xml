@@ -47,6 +47,7 @@
     <string name="ui_chip_sort_magical_atk">마법 공격력</string>
     <string name="ui_chip_sort_physical_def">물리 방어력</string>
     <string name="ui_chip_sort_magical_def">마법 방어력</string>
+    <string name="ui_chip_sort_name">이름</string>
     <string name="ui_chip_sort_age">나이</string>
     <string name="ui_chip_sort_height">키</string>
     <string name="ui_chip_sort_weight">몸무게</string>

@@ -69,9 +69,10 @@ class CharaListViewModel(
         10 to I18N.getString(R.string.ui_chip_sort_effective_magical_hp),
         11 to I18N.getString(R.string.ui_chip_sort_tp_up),
         12 to I18N.getString(R.string.ui_chip_sort_tp_reduce),
-        13 to I18N.getString(R.string.ui_chip_sort_age),
-        14 to I18N.getString(R.string.ui_chip_sort_height),
-        15 to I18N.getString(R.string.ui_chip_sort_weight)
+        13 to I18N.getString(R.string.ui_chip_sort_name),
+        14 to I18N.getString(R.string.ui_chip_sort_age),
+        15 to I18N.getString(R.string.ui_chip_sort_height),
+        16 to I18N.getString(R.string.ui_chip_sort_weight)
     )
 
     val dropDownValuesMap = mapOf<Int, Array<String>>(
@@ -111,104 +112,116 @@ class CharaListViewModel(
             }
         }
 
-        charaToShow.sortWith(kotlin.Comparator { a: Chara, b: Chara ->
-            val valueA : Int
-            val valueB : Int
-            when (selectedSort) {
-                "0" -> {
-                    return@Comparator if (b.startTime.isEqual(a.startTime)) 0 else if (b.startTime.isAfter(a.startTime) == isAsc) -1 else 1
-                }
-                "1" -> {
-                    valueA = a.searchAreaWidth
-                    valueB = b.searchAreaWidth
-                }
-                "2" -> {
-                    valueA = a.charaProperty.getAtk()
-                    valueB = b.charaProperty.getAtk()
-                }
-                "3" -> {
-                    valueA = a.charaProperty.getMagicStr()
-                    valueB = b.charaProperty.getMagicStr()
-                }
-                "4" -> {
-                    valueA = a.charaProperty.getPhysicalCritical()
-                    valueB = b.charaProperty.getPhysicalCritical()
-                }
-                "5" -> {
-                    valueA = a.charaProperty.getMagicCritical()
-                    valueB = b.charaProperty.getMagicCritical()
-                }
-                "6" -> {
-                    valueA = a.charaProperty.getDef()
-                    valueB = b.charaProperty.getDef()
-                }
-                "7" -> {
-                    valueA = a.charaProperty.getMagicDef()
-                    valueB = b.charaProperty.getMagicDef()
-                }
-                "8" -> {
-                    valueA = a.charaProperty.getHp()
-                    valueB = b.charaProperty.getHp()
-                }
-                "9" -> {
-                    valueA = a.charaProperty.effectivePhysicalHP
-                    valueB = b.charaProperty.effectivePhysicalHP
-                }
-                "10" -> {
-                    valueA = a.charaProperty.effectiveMagicalHP
-                    valueB = b.charaProperty.effectiveMagicalHP
-                }
-                "11" -> {
-                    valueA = a.charaProperty.getEnergyRecoveryRate()
-                    valueB = b.charaProperty.getEnergyRecoveryRate()
-                }
-                "12" -> {
-                    valueA = a.charaProperty.getEnergyReduceRate()
-                    valueB = b.charaProperty.getEnergyReduceRate()
-                }
-                "13" -> {
-                    valueA = try {
-                        a.age.toInt()
-                    } catch (ex: Exception) {
-                        9999
-                    }
-                    valueB = try {
-                        b.age.toInt()
-                    } catch (ex: Exception) {
-                        9999
-                    }
-                }
-                "14" -> {
-                    valueA = try {
-                        a.height.toInt()
-                    } catch (ex: Exception) {
-                        9999
-                    }
-                    valueB = try {
-                        b.height.toInt()
-                    } catch (ex: Exception) {
-                        9999
-                    }
-                }
-                "15" -> {
-                    valueA = try {
-                        a.weight.toInt()
-                    } catch (ex: Exception) {
-                        9999
-                    }
-                    valueB = try {
-                        b.weight.toInt()
-                    } catch (ex: Exception) {
-                        9999
-                    }
-                }
-                else -> {
-                    valueA = a.unitId
-                    valueB = b.unitId
-                }
+        // Sort by Name
+        if (selectedSort == "13") {
+            charaToShow.sortWith { a: Chara, b: Chara ->
+                val valueA: String = a.unitName
+                val valueB: String = b.unitName
+                (if (isAsc) 1 else -1) * valueB.compareTo(valueA)
             }
-            (if (isAsc) -1 else 1) * valueB.compareTo(valueA)
-        })
+        } else {
+            charaToShow.sortWith(kotlin.Comparator { a: Chara, b: Chara ->
+                val valueA: Int
+                val valueB: Int
+                when (selectedSort) {
+                    "0" -> {
+                        return@Comparator if (b.startTime.isEqual(a.startTime)) 0 else if (b.startTime.isAfter(
+                                a.startTime
+                            ) == isAsc
+                        ) -1 else 1
+                    }
+                    "1" -> {
+                        valueA = a.searchAreaWidth
+                        valueB = b.searchAreaWidth
+                    }
+                    "2" -> {
+                        valueA = a.charaProperty.getAtk()
+                        valueB = b.charaProperty.getAtk()
+                    }
+                    "3" -> {
+                        valueA = a.charaProperty.getMagicStr()
+                        valueB = b.charaProperty.getMagicStr()
+                    }
+                    "4" -> {
+                        valueA = a.charaProperty.getPhysicalCritical()
+                        valueB = b.charaProperty.getPhysicalCritical()
+                    }
+                    "5" -> {
+                        valueA = a.charaProperty.getMagicCritical()
+                        valueB = b.charaProperty.getMagicCritical()
+                    }
+                    "6" -> {
+                        valueA = a.charaProperty.getDef()
+                        valueB = b.charaProperty.getDef()
+                    }
+                    "7" -> {
+                        valueA = a.charaProperty.getMagicDef()
+                        valueB = b.charaProperty.getMagicDef()
+                    }
+                    "8" -> {
+                        valueA = a.charaProperty.getHp()
+                        valueB = b.charaProperty.getHp()
+                    }
+                    "9" -> {
+                        valueA = a.charaProperty.effectivePhysicalHP
+                        valueB = b.charaProperty.effectivePhysicalHP
+                    }
+                    "10" -> {
+                        valueA = a.charaProperty.effectiveMagicalHP
+                        valueB = b.charaProperty.effectiveMagicalHP
+                    }
+                    "11" -> {
+                        valueA = a.charaProperty.getEnergyRecoveryRate()
+                        valueB = b.charaProperty.getEnergyRecoveryRate()
+                    }
+                    "12" -> {
+                        valueA = a.charaProperty.getEnergyReduceRate()
+                        valueB = b.charaProperty.getEnergyReduceRate()
+                    }
+                    "14" -> {
+                        valueA = try {
+                            a.age.toInt()
+                        } catch (ex: Exception) {
+                            9999
+                        }
+                        valueB = try {
+                            b.age.toInt()
+                        } catch (ex: Exception) {
+                            9999
+                        }
+                    }
+                    "15" -> {
+                        valueA = try {
+                            a.height.toInt()
+                        } catch (ex: Exception) {
+                            9999
+                        }
+                        valueB = try {
+                            b.height.toInt()
+                        } catch (ex: Exception) {
+                            9999
+                        }
+                    }
+                    "16" -> {
+                        valueA = try {
+                            a.weight.toInt()
+                        } catch (ex: Exception) {
+                            9999
+                        }
+                        valueB = try {
+                            b.weight.toInt()
+                        } catch (ex: Exception) {
+                            9999
+                        }
+                    }
+                    else -> {
+                        valueA = a.unitId
+                        valueB = b.unitId
+                    }
+                }
+                (if (isAsc) -1 else 1) * valueB.compareTo(valueA)
+            })
+        }
         liveCharaList.postValue(charaToShow)
     }
 
@@ -238,15 +251,16 @@ class CharaListViewModel(
             "10" -> chara.sortValue = chara.charaProperty.effectiveMagicalHP.toString()
             "11" -> chara.sortValue = chara.charaProperty.getEnergyRecoveryRate().toString()
             "12" -> chara.sortValue = chara.charaProperty.getEnergyReduceRate().toString()
-            "13" -> {
+            "13" -> chara.sortValue = "" // No need to show value again
+            "14" -> {
                 if (chara.actualName == "出雲 宮子" || chara.actualName == "出云宫子") {
                     chara.sortValue = I18N.getString(R.string.aged_s, chara.age)
                 } else {
                     chara.sortValue = chara.age
                 }
             }
-            "14" -> chara.sortValue = chara.height
-            "15" -> chara.sortValue = chara.weight
+            "15" -> chara.sortValue = chara.height
+            "16" -> chara.sortValue = chara.weight
             else -> chara.sortValue = ""
         }
     }
