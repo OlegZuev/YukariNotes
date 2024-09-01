@@ -168,9 +168,9 @@ class CharaListViewModel(
                     valueB = b.charaProperty.getEnergyReduceRate()
                 }
                 "13" -> {
-                    val strvalueA: String = a.unitName
-                    val strvalueB: String = b.unitName
-                    return@Comparator (if (isAsc) 1 else -1) * strvalueB.compareTo(strvalueA)
+                    val nameA: String = a.unitName
+                    val nameB: String = b.unitName
+                    return@Comparator (if (isAsc) 1 else -1) * nameB.compareTo(nameA)
                 }
                 "14" -> {
                     valueA = try {
