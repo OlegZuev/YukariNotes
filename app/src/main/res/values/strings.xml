@@ -100,6 +100,11 @@
     <string name="ui_chip_position_forward">前衛</string>
     <string name="ui_chip_position_middle">中衛</string>
     <string name="ui_chip_position_rear">後衛</string>
+    <string name="ui_chip_element_fire">火</string>
+    <string name="ui_chip_element_water">水</string>
+    <string name="ui_chip_element_wind">風</string>
+    <string name="ui_chip_element_light">光</string>
+    <string name="ui_chip_element_dark">闇</string>
     <string name="ui_chip_atk_type_physical">物理</string>
     <string name="ui_chip_atk_type_magical">魔法</string>
     <string name="ui_btn_reset">リセット</string>

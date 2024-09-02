@@ -65,6 +65,11 @@
     <string name="ui_chip_position_forward">Front</string>
     <string name="ui_chip_position_middle">Middle</string>
     <string name="ui_chip_position_rear">Back</string>
+    <string name="ui_chip_element_fire">Fire</string>
+    <string name="ui_chip_element_water">Water</string>
+    <string name="ui_chip_element_wind">Wind</string>
+    <string name="ui_chip_element_light">Light</string>
+    <string name="ui_chip_element_dark">Dark</string>
     <string name="ui_chip_atk_type_physical">Physical</string>
     <string name="ui_chip_atk_type_magical">Magic</string>
     <string name="ui_btn_reset">Reset</string>

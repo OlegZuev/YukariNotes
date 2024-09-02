@@ -37,6 +37,11 @@
     <string name="ui_chip_position_forward">전열</string>
     <string name="ui_chip_position_middle">중열</string>
     <string name="ui_chip_position_rear">후열</string>
+    <string name="ui_chip_element_fire">불</string>
+    <string name="ui_chip_element_water">물</string>
+    <string name="ui_chip_element_wind">바람</string>
+    <string name="ui_chip_element_light">빛</string>
+    <string name="ui_chip_element_dark">어둠</string>
     <string name="ui_chip_atk_type_physical">물리</string>
     <string name="ui_chip_atk_type_magical">마법</string>
     <string name="ui_btn_reset">리셋</string>
