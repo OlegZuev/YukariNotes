@@ -37,6 +37,8 @@ class Chara: Cloneable {
     var maxUniqueEquipmentLevel: Int = 0
     var maxRarity: Int = 5
     var rarity: Int = 5
+    var element: Int = 0
+    @DrawableRes var elementIcon: Int = 0
     lateinit var actualName: String
     lateinit var age: String
     lateinit var unitName: String

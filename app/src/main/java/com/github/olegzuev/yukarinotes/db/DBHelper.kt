@@ -400,8 +400,10 @@ class DBHelper private constructor(
                 ,up.catch_copy
                 ,up.self_text
                 ,IFNULL(au.unit_name, ud.unit_name) 'actual_name' 
+                ,ut.talent_id
                 FROM unit_data AS ud 
                 JOIN unit_profile AS up ON ud.unit_id = up.unit_id 
+                JOIN unit_talent AS ut ON ud.unit_id = ut.unit_id
                 LEFT JOIN actual_unit_background AS au ON substr(ud.unit_id,1,4) = substr(au.unit_id,1,4) 
                 WHERE ud.comment <> '' 
                 AND ud.unit_id < 400000 
@@ -436,8 +438,10 @@ class DBHelper private constructor(
                 ,up.self_text
                 ,IFNULL(au.unit_name, ud.unit_name) 'actual_name' 
                 ,uc.unit_id 'unit_conversion_id' 
+                ,ut.talent_id
                 FROM unit_data AS ud 
                 JOIN unit_profile AS up ON ud.unit_id = up.unit_id 
+                JOIN unit_talent AS ut ON ud.unit_id = ut.unit_id
                 LEFT JOIN actual_unit_background AS au ON substr(ud.unit_id,1,4) = substr(au.unit_id,1,4) 
                 LEFT JOIN unit_conversion AS uc ON ud.unit_id = uc.original_unit_id 
                 WHERE ud.comment <> '' 
