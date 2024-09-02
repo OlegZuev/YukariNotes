@@ -75,6 +75,7 @@
     <string name="ui_chip_sort_magical_atk">Magic Atk</string>
     <string name="ui_chip_sort_physical_def">Physical Def</string>
     <string name="ui_chip_sort_magical_def">Magic Def</string>
+    <string name="ui_chip_sort_name">Name</string>
     <string name="ui_chip_sort_age">Age</string>
     <string name="ui_chip_sort_height">Height</string>
     <string name="ui_chip_sort_weight">Weight</string>
