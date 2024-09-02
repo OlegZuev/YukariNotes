@@ -147,9 +147,19 @@
                             android:layout_marginStart="16dp"
                             app:layout_constraintBottom_toBottomOf="@+id/detailsCharaIcon"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/detailsCharaIcon"
+                            app:layout_constraintTop_toBottomOf="@+id/elementIcon"
                             bind:src="@{detailsVM.mutableChara.positionIcon}" />
 
+
+                        <ImageView
+                            android:id="@+id/elementIcon"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_marginStart="16dp"
+                            app:layout_constraintBottom_toTopOf="@+id/positionIcon"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/detailsCharaIcon"
+                            bind:src="@{detailsVM.mutableChara.elementIcon}" />
 
                         <ImageView
                             android:id="@+id/imageView3"
