@@ -16,6 +16,7 @@ public class RawUnitBasic {
     public int move_speed;
     public int search_area_width;
     public int atk_type;
+    public int talent_id;
     public double normal_atk_cast_time;
     public int guild_id;
     public String comment;
@@ -45,6 +46,7 @@ public class RawUnitBasic {
         chara.setPrefabId(prefab_id);
         chara.setSearchAreaWidth(search_area_width);
         chara.setAtkType(atk_type);
+        chara.setElement(talent_id);
 
         chara.setMoveSpeed(move_speed);
         chara.setNormalAtkCastTime(normal_atk_cast_time);
@@ -96,6 +98,26 @@ public class RawUnitBasic {
         } else {
             chara.position = "3";
             chara.setPositionIcon(R.drawable.position_rear);
+        }
+
+        switch (talent_id) {
+            case 1:
+                chara.setElementIcon(R.drawable.ele_fire);
+                break;
+            case 2:
+                chara.setElementIcon(R.drawable.ele_water);
+                break;
+            case 3:
+                chara.setElementIcon(R.drawable.ele_wind);
+                break;
+            case 4:
+                chara.setElementIcon(R.drawable.ele_light);
+                break;
+            case 5:
+                chara.setElementIcon(R.drawable.ele_dark);
+                break;
+            default:
+                break;
         }
     }
 }

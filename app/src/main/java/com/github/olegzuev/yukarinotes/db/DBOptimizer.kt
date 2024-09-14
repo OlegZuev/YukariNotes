@@ -945,6 +945,7 @@ object DBOptimizer {
                 bean.move_speed = cursor.getInt(RawUnitBasic::move_speed.name)
                 bean.search_area_width = cursor.getInt(RawUnitBasic::search_area_width.name)
                 bean.atk_type = cursor.getInt(RawUnitBasic::atk_type.name)
+                bean.talent_id = cursor.getInt(RawUnitBasic::talent_id.name)
                 bean.normal_atk_cast_time = cursor.getDouble(RawUnitBasic::normal_atk_cast_time.name)
                 bean.guild_id = cursor.getInt(RawUnitBasic::guild_id.name)
                 bean.comment = cursor.getString(RawUnitBasic::comment.name)

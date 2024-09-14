@@ -37,7 +37,7 @@ class CharaListViewModel(
     val liveCharaList = MutableLiveData<List<Chara>>()
 
     var selectedAttackType: String = "0"
-    var selectedPosition: String = "0"
+    var selectedFilter: Filter = Filter.ANY
     var selectedSort: String = "0"
     var isAsc: Boolean = false
     var searchText: CharSequence = ""
@@ -46,13 +46,6 @@ class CharaListViewModel(
         0 to I18N.getString(R.string.ui_chip_any),
         1 to I18N.getString(R.string.ui_chip_atk_type_physical),
         2 to I18N.getString(R.string.ui_chip_atk_type_magical)
-    )
-
-    private val positionMap = mapOf(
-        0 to I18N.getString(R.string.ui_chip_any),
-        1 to I18N.getString(R.string.ui_chip_position_forward),
-        2 to I18N.getString(R.string.ui_chip_position_middle),
-        3 to I18N.getString(R.string.ui_chip_position_rear)
     )
 
     private val sortMap = mapOf(
@@ -77,19 +70,19 @@ class CharaListViewModel(
 
     val dropDownValuesMap = mapOf<Int, Array<String>>(
         1 to attackTypeMap.values.toTypedArray(),
-        2 to positionMap.values.toTypedArray(),
+        2 to Filter.getAllLabels(),
         3 to sortMap.values.toTypedArray()
     )
 
     private fun filter(
         attackType: String?,
-        position: String?,
+        filterID: Int?,
         sortValue: String?,
         asc: Boolean?,
         searchText: CharSequence?
     ) {
         selectedAttackType = attackType?: selectedAttackType
-        selectedPosition = position?: selectedPosition
+        selectedFilter = Filter.getByID(filterID) ?: selectedFilter
         sortValue?.apply {
             isAsc = if (this == selectedSort) !isAsc else false
             selectedSort = this
@@ -106,7 +99,7 @@ class CharaListViewModel(
                     setSortValue(chara, selectedSort)
                     charaToShow.add(chara)
                 }
-            } else if (checkAttackType(chara, selectedAttackType) && checkPosition(chara, selectedPosition)) {
+            } else if (checkAttackType(chara, selectedAttackType) && selectedFilter.checkChara(chara)) {
                 setSortValue(chara, selectedSort)
                 charaToShow.add(chara)
             }
@@ -219,11 +212,56 @@ class CharaListViewModel(
     }
 
     fun filterDefault() {
-        filter(selectedAttackType, selectedPosition, selectedSort, isAsc, searchText)
+        filter(selectedAttackType, selectedFilter.ordinal, selectedSort, isAsc, searchText)
     }
 
-    private fun checkPosition(chara: Chara, position: String): Boolean {
-        return position == "0" || position == chara.position
+    enum class Filter {
+        ANY {
+            override fun checkChara(chara: Chara) = true
+            override fun getLabel() = I18N.getString(R.string.ui_chip_any)
+        },
+        FRONT {
+            override fun checkChara(chara: Chara) = chara.position == "1"
+            override fun getLabel() = I18N.getString(R.string.ui_chip_position_forward)
+        },
+        MIDDLE {
+            override fun checkChara(chara: Chara) = chara.position == "2"
+            override fun getLabel() = I18N.getString(R.string.ui_chip_position_middle)
+        },
+        BACK {
+            override fun checkChara(chara: Chara) = chara.position == "3"
+            override fun getLabel() = I18N.getString(R.string.ui_chip_position_rear)
+        },
+        FIRE {
+            override fun checkChara(chara: Chara) = chara.element == 1
+            override fun getLabel() = I18N.getString(R.string.ui_chip_element_fire)
+        },
+        WATER {
+            override fun checkChara(chara: Chara) = chara.element == 2
+            override fun getLabel() = I18N.getString(R.string.ui_chip_element_water)
+        },
+        WIND {
+            override fun checkChara(chara: Chara) = chara.element == 3
+            override fun getLabel() = I18N.getString(R.string.ui_chip_element_wind)
+        },
+        LIGHT {
+            override fun checkChara(chara: Chara) = chara.element == 4
+            override fun getLabel() = I18N.getString(R.string.ui_chip_element_light)
+        },
+        DARK {
+            override fun checkChara(chara: Chara) = chara.element == 5
+            override fun getLabel() = I18N.getString(R.string.ui_chip_element_dark)
+        };
+
+        abstract fun checkChara(chara: Chara): Boolean
+        abstract fun getLabel(): String
+
+        companion object {
+            fun getAllLabels(): Array<String> {
+                return entries.map { it.getLabel() }.toTypedArray();
+            }
+            fun getByID(id: Int?): Filter? = entries.firstOrNull {it.ordinal == id}
+        }
     }
 
     private fun checkAttackType(chara: Chara, type: String): Boolean {
@@ -277,7 +315,7 @@ class CharaListViewModel(
                 filter(position.toString(), null, null, null, searchText)
             }
             2 -> AdapterView.OnItemClickListener { _, _, position, _ ->
-                filter(null, position.toString(), null, null, searchText)
+                filter(null, position, null, null, searchText)
             }
             3 -> AdapterView.OnItemClickListener { _, _, position, _ ->
                 filter(null, null, position.toString(), null, searchText)
