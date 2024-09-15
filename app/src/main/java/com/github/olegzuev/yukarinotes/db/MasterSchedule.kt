@@ -4,6 +4,7 @@ import com.github.olegzuev.yukarinotes.data.CampaignSchedule
 import com.github.olegzuev.yukarinotes.data.CampaignType
 import com.github.olegzuev.yukarinotes.data.EventSchedule
 import com.github.olegzuev.yukarinotes.data.EventType
+import com.github.olegzuev.yukarinotes.utils.Utils
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -17,23 +18,30 @@ class MasterSchedule {
             scheduleList.add(
                 CampaignSchedule(
                     it.id, "", EventType.Campaign,
-                    LocalDateTime.parse(it.start_time, formatter),
-                    LocalDateTime.parse(it.end_time, formatter),
+                    Utils.CustomLocalDataTimeParse(it.start_time, formatter),
+                    Utils.CustomLocalDataTimeParse(it.end_time, formatter),
                     it.campaign_category, campaignType, it.value, it.system_id
                 )
             )
         }
         DBHelper.get().getHatsuneSchedule(null)?.forEach {
-            scheduleList.add(EventSchedule(
-                it.event_id, it.title, EventType.Hatsune,
-                LocalDateTime.parse(it.start_time, formatter),
-                LocalDateTime.parse(it.end_time, formatter)
-            ))
+            scheduleList.add(
+                EventSchedule(
+                    it.event_id, it.title, EventType.Hatsune,
+                    Utils.CustomLocalDataTimeParse(it.start_time, formatter),
+                    Utils.CustomLocalDataTimeParse(it.end_time, formatter)
+                )
+            )
         }
         DBHelper.get().getTowerSchedule(null)?.forEach {
-            scheduleList.add(EventSchedule(it.tower_schedule_id, "", EventType.Tower,
-                LocalDateTime.parse(it.start_time, formatter), LocalDateTime.parse(it.end_time, formatter)
-            ))
+            scheduleList.add(
+                EventSchedule(
+                    it.tower_schedule_id, "",
+                    EventType.Tower,
+                    Utils.CustomLocalDataTimeParse(it.start_time, formatter),
+                    Utils.CustomLocalDataTimeParse(it.end_time, formatter)
+                )
+            )
         }
 
         if (nowTime == null) {
@@ -41,8 +49,8 @@ class MasterSchedule {
                 scheduleList.add(
                     EventSchedule(
                         it.campaign_id, "", EventType.Gacha,
-                        LocalDateTime.parse(it.start_time, formatter),
-                        LocalDateTime.parse(it.end_time, formatter)
+                        Utils.CustomLocalDataTimeParse(it.start_time, formatter),
+                        Utils.CustomLocalDataTimeParse(it.end_time, formatter)
                     )
                 )
             }
@@ -52,8 +60,8 @@ class MasterSchedule {
                         it.clan_battle_id,
                         "",
                         EventType.ClanBattle,
-                        LocalDateTime.parse(it.start_time, formatter),
-                        LocalDateTime.parse(it.end_time, formatter)
+                        Utils.CustomLocalDataTimeParse(it.start_time, formatter),
+                        Utils.CustomLocalDataTimeParse(it.end_time, formatter)
                     )
                 )
             }

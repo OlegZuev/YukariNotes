@@ -8,6 +8,8 @@ import androidx.annotation.NonNull;
 
 import java.lang.reflect.Field;
 import java.text.DecimalFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Utils {
@@ -111,5 +113,9 @@ public class Utils {
             ret[j++] = hexDigits[bytes[i] & 0x0f];
         }
         return new String(ret);
+    }
+
+    public static LocalDateTime CustomLocalDataTimeParse(CharSequence text, DateTimeFormatter formatter) {
+        return LocalDateTime.parse(text.toString().trim().replaceAll(" +", " "), formatter);
     }
 }

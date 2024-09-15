@@ -1,6 +1,7 @@
 package com.github.olegzuev.yukarinotes.db;
 
 import com.github.olegzuev.yukarinotes.data.ClanBattlePeriod;
+import com.github.olegzuev.yukarinotes.utils.Utils;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -14,8 +15,8 @@ public class RawClanBattlePeriod {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/M/d H:m:s");
         return new ClanBattlePeriod(
                 clan_battle_id,
-                LocalDateTime.parse(start_time, formatter),
-                LocalDateTime.parse(end_time, formatter)
+                Utils.CustomLocalDataTimeParse(start_time, formatter),
+                Utils.CustomLocalDataTimeParse(end_time, formatter)
         );
     }
 }

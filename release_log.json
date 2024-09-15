@@ -1,5 +1,14 @@
 [
   {
+    "versionCode": "101",
+    "versionName": "1.1.0",
+    "recommend": "false",
+    "messageJa": "- Fixed App crash for latest db (10058700). Added sort by name in Characters. Added elements support in Characters.",
+    "messageZh": "- Fixed App crash for latest db (10058700). Added sort by name in Characters. Added elements support in Characters.",
+    "infoJa": "",
+    "infoZh": ""
+  },
+  {
     "versionCode": "100",
     "versionName": "1.0.0",
     "recommend": "false",
