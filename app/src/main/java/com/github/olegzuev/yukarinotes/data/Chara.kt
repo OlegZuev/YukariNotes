@@ -66,7 +66,8 @@ class Chara: Cloneable {
     lateinit var promotionStatus: Map<Int, Property>
     lateinit var promotionBonus: Map<Int, Property>
     lateinit var rankEquipments: Map<Int, List<Equipment>>
-    var uniqueEquipment: Equipment? = null
+    var uniqueEquipment1: Equipment? = null
+    var uniqueEquipment2: Equipment? = null
     var attackPatternList = mutableListOf<AttackPattern>()
     var skills = mutableListOf<Skill>()
     val storyStatusList = mutableListOf<OneStoryStatus>()
@@ -94,8 +95,7 @@ class Chara: Cloneable {
 
     fun setCharaProperty(
         rarity: Int = maxRarity,
-        rank: Int = maxCharaRank,
-        hasUnique: Boolean = true
+        rank: Int = maxCharaRank
     ) {
         charaProperty = Property().apply {
             plusEqual(rarityProperty[rarity])
@@ -105,16 +105,14 @@ class Chara: Cloneable {
             plusEqual(promotionBonus[rank])
             plusEqual(getAllEquipmentProperty(rank))
             plusEqual(getPassiveSkillProperty(rarity))
-            if (hasUnique) {
-                plusEqual(uniqueEquipmentProperty)
-            }
+            plusEqual(uniqueEquipment1Property)
+            plusEqual(uniqueEquipment2Property)
         }
     }
 
     fun getSpecificCharaProperty(
         rarity: Int = maxRarity,
-        rank: Int = maxCharaRank,
-        hasUnique: Boolean = true
+        rank: Int = maxCharaRank
     ): Property {
         return Property().apply {
             plusEqual(rarityProperty[rarity])
@@ -124,9 +122,8 @@ class Chara: Cloneable {
             plusEqual(promotionBonus[rank])
             plusEqual(getAllEquipmentProperty(rank))
             plusEqual(getPassiveSkillProperty(rarity))
-            if (hasUnique) {
-                plusEqual(uniqueEquipmentProperty)
-            }
+            plusEqual(uniqueEquipment1Property)
+            plusEqual(uniqueEquipment2Property)
         }
     }
 
@@ -142,9 +139,14 @@ class Chara: Cloneable {
         return property
     }
 
-    val uniqueEquipmentProperty: Property
+    val uniqueEquipment1Property: Property
         get() {
-            return uniqueEquipment?.getCeiledProperty() ?: Property()
+            return uniqueEquipment1?.getCeiledProperty() ?: Property()
+        }
+
+    val uniqueEquipment2Property: Property
+        get() {
+            return uniqueEquipment2?.getCeiledProperty() ?: Property()
         }
 
     fun getPassiveSkillProperty(rarity: Int): Property {

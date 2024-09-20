@@ -138,7 +138,8 @@ class SharedViewModelChara : ViewModel() {
     }
 
     private fun setUniqueEquipment(chara: Chara) {
-        chara.uniqueEquipment = MasterUniqueEquipment().getCharaUniqueEquipment(chara)
+        chara.uniqueEquipment1 = MasterUniqueEquipment().getCharaUniqueEquipment1(chara)
+        chara.uniqueEquipment2 = MasterUniqueEquipment().getCharaUniqueEquipment2(chara)
     }
 
     private fun setUnitSkillData(chara: Chara) {

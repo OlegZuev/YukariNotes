@@ -33,7 +33,7 @@ class Equipment(
         if (equipmentEnhanceRates.isEmpty()) {
             return Property()
         }
-        return if (equipmentId in uniqueEquipmentIdRange) {
+        return if (equipmentId in uniqueEquipmentIdRange && equipmentId % 10 == 1) {
             if (level <= 260 || equipmentEnhanceRates.size == 1) {
                 equipmentProperty.plus(equipmentEnhanceRates[0].multiply((level - 1).toDouble())).ceiled
             } else {
@@ -41,6 +41,8 @@ class Equipment(
                     .plus(equipmentEnhanceRates[0].multiply(259.toDouble())).ceiled
                     .plus(equipmentEnhanceRates[1].multiply((level - 260).toDouble())).ceiled
             }
+        } else if (equipmentId in uniqueEquipmentIdRange  && equipmentId % 10 == 2) {
+            equipmentProperty.plus(equipmentEnhanceRates[0].multiply(level.toDouble())).ceiled
         } else {
             equipmentProperty.plus(equipmentEnhanceRates[0].multiply(level.toDouble())).ceiled
         }

@@ -1,5 +1,14 @@
 [
   {
+    "versionCode": "102",
+    "versionName": "1.1.1",
+    "recommend": "false",
+    "messageJa": "- Added UE2 support.",
+    "messageZh": "- Added UE2 support.",
+    "infoJa": "",
+    "infoZh": ""
+  },
+  {
     "versionCode": "101",
     "versionName": "1.1.0",
     "recommend": "false",

@@ -26,7 +26,8 @@ class CharaProfileViewModel(
                     }
                 }
                 field.add(SpaceVT())
-                field.add(CharaUniqueEquipmentVT(chara.uniqueEquipment ?: Equipment.getNull))
+                field.add(CharaUniqueEquipmentVT(chara.uniqueEquipment1 ?: Equipment.getNull))
+                field.add(CharaUniqueEquipmentVT(chara.uniqueEquipment2 ?: Equipment.getNull))
                 chara.rankEquipments.entries.forEach {
                     field.add(CharaRankEquipmentVT(it))
                 }

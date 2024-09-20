@@ -373,7 +373,6 @@ class DBHelper private constructor(
      */
     fun getCharaBase(): List<RawUnitBasic>? {
         return if (getConversionCount == "0") {
-//            getBeanListByRaw(
             DBOptimizer.getBeanListByRaw(
                 """
                 SELECT ud.unit_id
@@ -611,7 +610,6 @@ class DBHelper private constructor(
      * Get Map<UnitId, List<RawPromotionStatus>> of all units
      */
     fun getCharaPromotionStatusMap(): Map<Int, List<RawPromotionStatus>> {
-//        val list = getBeanListByRaw<RawPromotionStatus>(
         val list = DBOptimizer.getBeanListByRaw<RawPromotionStatus>(
             """
                 SELECT * 
@@ -906,7 +904,7 @@ class DBHelper private constructor(
     /***
      * Get Map<UnitId, RawUniqueEquipmentData> of all units
      */
-    fun getUniqueEquipmentMap(): Map<Int, RawUniqueEquipmentData> {
+    fun getUniqueEquipment1Map(): Map<Int, RawUniqueEquipmentData> {
         var sqlQuery = """
                 SELECT u.unit_id, e.*
                 ,c.item_id_1
@@ -932,6 +930,7 @@ class DBHelper private constructor(
                 FROM unique_equipment_data AS e 
                 JOIN unit_unique_equipment AS u ON e.equipment_id=u.equip_id 
                 LEFT JOIN unique_equipment_craft AS c ON e.equipment_id=c.equip_id
+                WHERE u.equip_slot = 1 
                 """
         if (UserSettings.get().getUserServer() == UserSettings.SERVER_CN) {
             sqlQuery = """
@@ -961,9 +960,50 @@ class DBHelper private constructor(
                     LEFT JOIN unique_equipment_craft AS c ON e.equipment_id=c.equip_id
                     """
         }
-//        val list = getBeanListByRaw<RawUniqueEquipmentData>(
         val list = DBOptimizer.getBeanListByRaw<RawUniqueEquipmentData>(
             sqlQuery,
+            RawUniqueEquipmentData::class.simpleName
+        )
+        val map = mutableMapOf<Int, RawUniqueEquipmentData>()
+        list?.forEach {
+            map[it.unit_id] = it
+        }
+        return map
+    }
+
+    /***
+     * Get Map<UnitId, RawUniqueEquipmentData> of all units
+     */
+    fun getUniqueEquipment2Map(): Map<Int, RawUniqueEquipmentData> {
+        val list = DBOptimizer.getBeanListByRaw<RawUniqueEquipmentData>(
+            """
+                SELECT u.unit_id, e.*
+                ,cg.item_id AS 'item_id_1'
+                ,150 AS 'consume_num_1'
+                ,0 AS 'item_id_2'
+                ,0 AS 'consume_num_2'
+                ,0 AS 'item_id_3'
+                ,0 AS 'consume_num_3'
+                ,0 AS 'item_id_4'
+                ,0 AS 'consume_num_4'
+                ,0 AS 'item_id_5'
+                ,0 AS 'consume_num_5'
+                ,0 AS 'item_id_6'
+                ,0 AS 'consume_num_6'
+                ,0 AS 'item_id_7'
+                ,0 AS 'consume_num_7'
+                ,0 AS 'item_id_8'
+                ,0 AS 'consume_num_8'
+                ,0 AS 'item_id_9'
+                ,0 AS 'consume_num_9'
+                ,0 AS 'item_id_10'
+                ,0 AS 'consume_num_10'
+                FROM unique_equipment_data AS e
+                JOIN unit_unique_equipment AS u ON e.equipment_id=u.equip_id
+                LEFT JOIN unique_equip_craft_enhance AS ce ON e.equipment_id=ce.equipment_id
+                LEFT JOIN unique_equip_consume_group AS cg ON ce.consume_group_id=cg.group_id
+                WHERE u.equip_slot like 2;
+                """,
             RawUniqueEquipmentData::class.simpleName
         )
         val map = mutableMapOf<Int, RawUniqueEquipmentData>()
@@ -1075,7 +1115,6 @@ class DBHelper private constructor(
      * Get Map<UnitId, RawUnitSkillData> of all units
      */
     fun getUnitSkillDataMap(): Map<Int, RawUnitSkillData> {
-//        val list = getBeanListByRaw<RawUnitSkillData>(
         val list = DBOptimizer.getBeanListByRaw<RawUnitSkillData>(
             """
                 SELECT * 

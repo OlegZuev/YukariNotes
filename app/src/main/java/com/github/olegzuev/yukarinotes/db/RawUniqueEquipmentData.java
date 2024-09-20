@@ -71,7 +71,7 @@ public class RawUniqueEquipmentData {
                 equipment_enhance_point,
                 sale_price,
                 require_level,
-                chara.getMaxUniqueEquipmentLevel(),
+                equipment_id % 10 == 1 ? chara.getMaxUniqueEquipmentLevel() : 5,
                 this.getProperty(),
                 uniqueEquipEnhanceProperties,
                 "",
