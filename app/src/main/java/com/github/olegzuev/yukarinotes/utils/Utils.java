@@ -116,6 +116,13 @@ public class Utils {
     }
 
     public static LocalDateTime CustomLocalDataTimeParse(CharSequence text, DateTimeFormatter formatter) {
-        return LocalDateTime.parse(text.toString().trim().replaceAll(" +", " "), formatter);
+        try {
+            return LocalDateTime.parse(text.toString().replaceAll("[  ]+", " ").trim(), formatter);
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            System.out.println("LocalDateTime ERROR: " + text);
+        }
+
+        return LocalDateTime.MIN;
     }
 }
