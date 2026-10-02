@@ -10,6 +10,7 @@ import android.os.Handler
 import android.os.Looper
 import android.os.Message
 import androidx.annotation.StringRes
+import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.afollestad.materialdialogs.MaterialDialog
 import com.github.olegzuev.yukarinotes.BuildConfig
@@ -333,7 +334,7 @@ class UpdateManager private constructor(
         FileUtils.checkFileAndDeleteIfExists(File(mContext.getExternalFilesDir(null), Statics.APK_NAME))
         downloadId = downloadManager.enqueue(request)
         val intentFilter = IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE)
-        mContext.registerReceiver(broadcastReceiver, intentFilter)
+        ContextCompat.registerReceiver(mContext, broadcastReceiver, intentFilter, ContextCompat.RECEIVER_EXPORTED)
     }
 
     private val broadcastReceiver = object: BroadcastReceiver() {
