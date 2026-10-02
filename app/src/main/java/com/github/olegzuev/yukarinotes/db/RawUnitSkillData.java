@@ -36,6 +36,10 @@ public class RawUnitSkillData {
     public int main_skill_evolution_2;
     public int sp_skill_evolution_1;
     public int sp_skill_evolution_2;
+    public int main_skill_revolution_1;
+    public int main_skill_revolution_2;
+    public int sp_skill_revolution_1;
+    public int sp_skill_revolution_2;
     public int sp_union_burst;
 
     public void setCharaSkillList(Chara chara){
@@ -47,10 +51,14 @@ public class RawUnitSkillData {
             chara.getSkills().add(new Skill(main_skill_1, Skill.SkillClass.MAIN1));
         if(main_skill_evolution_1 != 0 && chara.getUniqueEquipment1() != null)
             chara.getSkills().add(new Skill(main_skill_evolution_1, Skill.SkillClass.MAIN1_EVO));
+        if(main_skill_revolution_1 != 0)
+            chara.getSkills().add(new Skill(main_skill_revolution_1, Skill.SkillClass.MAIN1_REVO));
         if(main_skill_2 != 0)
             chara.getSkills().add(new Skill(main_skill_2, Skill.SkillClass.MAIN2));
         if(main_skill_evolution_2 != 0 && chara.getUniqueEquipment2() != null)
             chara.getSkills().add(new Skill(main_skill_evolution_2, Skill.SkillClass.MAIN2_EVO));
+        if(main_skill_revolution_2 != 0)
+            chara.getSkills().add(new Skill(main_skill_revolution_2, Skill.SkillClass.MAIN2_REVO));
         if(main_skill_3 != 0)
             chara.getSkills().add(new Skill(main_skill_3, Skill.SkillClass.MAIN3));
         if(main_skill_4 != 0)
@@ -73,10 +81,14 @@ public class RawUnitSkillData {
             chara.getSkills().add(new Skill(sp_skill_1, Skill.SkillClass.SP1));
         if(sp_skill_evolution_1 != 0)
             chara.getSkills().add(new Skill(sp_skill_evolution_1, Skill.SkillClass.SP1_EVO));
+        if(sp_skill_revolution_1 != 0)
+            chara.getSkills().add(new Skill(sp_skill_revolution_1, Skill.SkillClass.SP1_REVO));
         if(sp_skill_2 != 0)
             chara.getSkills().add(new Skill(sp_skill_2, Skill.SkillClass.SP2));
         if(sp_skill_evolution_2 != 0)
             chara.getSkills().add(new Skill(sp_skill_evolution_2, Skill.SkillClass.SP2_EVO));
+        if(sp_skill_revolution_2 != 0)
+            chara.getSkills().add(new Skill(sp_skill_revolution_2, Skill.SkillClass.SP2_REVO));
         if(sp_skill_3 != 0)
             chara.getSkills().add(new Skill(sp_skill_3, Skill.SkillClass.SP3));
         if(sp_skill_4 != 0)
