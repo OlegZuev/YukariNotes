@@ -1,5 +1,14 @@
 [
   {
+    "versionCode": "104",
+    "versionName": "1.2.0",
+    "recommend": "true",
+    "messageJa": "- Added UE1SP support, added more skill actions support (up to 20).",
+    "messageZh": "- Added UE1SP support, added more skill actions support (up to 20).",
+    "infoJa": "",
+    "infoZh": ""
+  },
+  {
     "versionCode": "103",
     "versionName": "1.1.2",
     "recommend": "true",
