@@ -457,6 +457,10 @@ object DBOptimizer {
                 bean.main_skill_evolution_2 = cursor.getInt(RawUnitSkillData::main_skill_evolution_2.name)
                 bean.sp_skill_evolution_1 = cursor.getInt(RawUnitSkillData::sp_skill_evolution_1.name)
                 bean.sp_skill_evolution_2 = cursor.getInt(RawUnitSkillData::sp_skill_evolution_2.name)
+                bean.main_skill_revolution_1 = cursor.getInt(RawUnitSkillData::main_skill_revolution_1.name)
+                bean.main_skill_revolution_2 = cursor.getInt(RawUnitSkillData::main_skill_revolution_2.name)
+                bean.sp_skill_revolution_1 = cursor.getInt(RawUnitSkillData::sp_skill_revolution_1.name)
+                bean.sp_skill_revolution_2 = cursor.getInt(RawUnitSkillData::sp_skill_revolution_2.name)
                 bean.sp_union_burst = cursor.getInt(RawUnitSkillData::sp_union_burst.name)
 
                 result.add(bean)

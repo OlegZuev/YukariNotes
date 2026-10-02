@@ -30,8 +30,10 @@ class Skill(
         UB_EVO("UB+"),
         MAIN1("M1"),
         MAIN1_EVO("M1+"),
+        MAIN1_REVO("M1++"),
         MAIN2("M2"),
         MAIN2_EVO("M2+"),
+        MAIN2_REVO("M2++"),
         MAIN3("M3"),
         MAIN4("M4"),
         MAIN5("M5"),
@@ -42,8 +44,10 @@ class Skill(
         MAIN10("M10"),
         SP1("S1"),
         SP1_EVO("S1+"),
+        SP1_REVO("S1++"),
         SP2("S2"),
         SP2_EVO("S2+"),
+        SP2_REVO("S2++"),
         SP3("S3"),
         SP4("S4"),
         SP5("S5"),
@@ -90,14 +94,22 @@ class Skill(
                     I18N.getStringWithSpace(R.string.main_skill_1_evo)
                 MAIN2_EVO ->
                     I18N.getStringWithSpace(R.string.main_skill_2_evo)
+                MAIN1_REVO ->
+                    I18N.getStringWithSpace(R.string.main_skill_1_revo)
+                MAIN2_REVO ->
+                    I18N.getStringWithSpace(R.string.main_skill_2_revo)
                 SP1 ->
                     I18N.getStringWithSpace(R.string.sp_skill_1)
                 SP1_EVO ->
                     I18N.getStringWithSpace(R.string.sp_skill_1_evo)
+                SP1_REVO ->
+                    I18N.getStringWithSpace(R.string.sp_skill_1_revo)
                 SP2 ->
                     I18N.getStringWithSpace(R.string.sp_skill_2)
                 SP2_EVO ->
                     I18N.getStringWithSpace(R.string.sp_skill_2_evo)
+                SP2_REVO ->
+                    I18N.getStringWithSpace(R.string.sp_skill_2_revo)
                 SP3 ->
                     I18N.getStringWithSpace(R.string.sp_skill_3)
                 SP4 ->

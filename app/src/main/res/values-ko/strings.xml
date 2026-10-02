@@ -484,4 +484,8 @@
     <string name="text_deney">아니요</string>
     <string name="text_copy">복사</string>
     <string name="text_copy_finished">텍스트를 클립보드에 복사했습니다</string>
+    <string name="main_skill_1_revo">Main 1++</string>
+    <string name="main_skill_2_revo">Main 2++</string>
+    <string name="sp_skill_1_revo">SP 1++</string>
+    <string name="sp_skill_2_revo">SP 2++</string>
 </resources>
