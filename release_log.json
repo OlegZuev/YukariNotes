@@ -1,5 +1,14 @@
 [
   {
+    "versionCode": "105",
+    "versionName": "1.2.1",
+    "recommend": "true",
+    "messageJa": "- Fix update crashing on Android 14+",
+    "messageZh": "- Fix update crashing on Android 14+",
+    "infoJa": "",
+    "infoZh": ""
+  },
+  {
     "versionCode": "104",
     "versionName": "1.2.0",
     "recommend": "true",
